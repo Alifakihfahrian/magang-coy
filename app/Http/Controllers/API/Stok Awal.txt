@@ -1,0 +1,8 @@
+Stok Awal 0
+
+Pembelian Meja 10 Biji
+
+
+id | barang_id | stok_akhir | pemasukan | pengeluaran | keterangan |
+1 |    1 | 10 | 10 | 0 | Pembelian Meja 10 Biji
+2 |    1 | 8 | 0 | 2 | Penjualan Meja 2 Biji
