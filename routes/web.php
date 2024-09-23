@@ -68,6 +68,5 @@ Route::middleware(['auth'])->group(function() {
     Route::delete('/barangs/{barang}', [BarangController::class, 'destroy'])->name('barangs.destroy');  // Menghapus barang
     Route::get('/stok/{id}/edit', [StokController::class, 'edit'])->name('stok.edit');
     Route::post('/stok/{id}/update', [StokController::class, 'update'])->name('stok.update');
-
-
+    
 Route::get('/', [BarangController::class, 'index'])->name('home');

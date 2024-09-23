@@ -25,6 +25,27 @@
                 <label for="jumlah_stok" class="form-label">Jumlah Stok:</label>
                 <input type="number" class="form-control" id="jumlah_stok" name="jumlah_stok" value="{{ $barang->stok->jumlah_stok ?? '' }}" required>
             </div>
+
+            <!-- Tambahan Dropdown untuk penambahan atau pengurangan stok -->
+            <div class="mb-3">
+                <label for="stok_type" class="form-label">Operasi Stok:</label>
+                <select class="form-select" id="stok_type" name="stok_type" required>
+                    <option value="add">Tambah Stok</option>
+                    <option value="subtract">Kurangi Stok</option>
+                </select>
+            </div>
+
+            <!-- Input untuk jumlah stok yang ditambah atau dikurangi -->
+            <div class="mb-3">
+                <label for="stok_amount" class="form-label">Jumlah Penambahan/Pengurangan:</label>
+                <input type="number" class="form-control" id="stok_amount" name="stok_amount" min="1" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Keterangan:</label>
+                <input type="text">
+            </div>
+
             <div class="mb-3">
                 <label for="files" class="form-label">Upload New Files (Optional):</label>
                 <input type="file" class="form-control" id="files" name="files[]" multiple>

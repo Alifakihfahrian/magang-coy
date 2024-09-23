@@ -13,11 +13,11 @@
         <form action="{{ route('barangs.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Name:</label>
+                <label for="name" class="form-label">Nama Barang:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Description:</label>
+                <label for="description" class="form-label">Deskripsi Barang:</label>
                 <textarea class="form-control" id="description" name="description" required></textarea>
             </div>
             <div class="mb-3">
@@ -25,10 +25,10 @@
                 <input type="number" class="form-control" id="jumlah_stok" name="jumlah_stok" required>
             </div>
             <div class="mb-3">
-                <label for="files" class="form-label">Upload Files:</label>
+                <label for="files" class="form-label">Unggah Barang:</label>
                 <input type="file" class="form-control" id="files" name="files[]" multiple>
             </div>
-            <button type="submit" class="btn btn-success">Save</button>
+            <button type="submit" class="btn btn-success">Simpan</button>
             <a href="{{ route('barangs.index') }}" class="btn btn-secondary">Back to List</a>
         </form>
     </div>

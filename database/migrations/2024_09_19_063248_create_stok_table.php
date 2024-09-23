@@ -17,7 +17,11 @@ return new class extends Migration
         $table->id(); // Menggunakan unsignedBigInteger sebagai primary key
         $table->unsignedInteger('barang_id'); // Menggunakan unsignedInteger karena tabel Barang memiliki increments('id')
         $table->integer('jumlah_stok');
+        $table->integer('penambahan_stok')->nullable();
+        $table->integer('pengurangan_stok')->nullable();
+        $table->string('keterangan')->nullable();
         $table->timestamps();
+
 
         // Relasi foreign key ke tabel barang
         $table->foreign('barang_id')->references('id')->on('Barang')->onDelete('cascade');

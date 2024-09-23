@@ -71,18 +71,36 @@ class BarangController extends Controller
         'name' => 'required|string|max:255',
         'description' => 'required|string',
         'jumlah_stok' => 'required|integer',
+        'stok_type' => 'required|string|in:add,subtract',
+        'stok_amount' => 'required|integer|min:1',
         'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
     ]);
 
+    // Update barang data (name, description)
     $barang->update($request->only('name', 'description'));
 
-    $barang->stok()->updateOrCreate(
-        ['barang_id' => $barang->id],
-        ['jumlah_stok' => $request->jumlah_stok,]
-    );
+    // Logika penambahan atau pengurangan stok
+    $stok = $barang->stok;
+    $stok_amount = $request->stok_amount;
 
- 
-    if ($request->hasFile('file')) {
+    if ($request->stok_type == 'add') {
+        $stok->jumlah_stok += $stok_amount;
+    } elseif ($request->stok_type == 'subtract') {
+        $stok->jumlah_stok -= $stok_amount;
+    }
+
+    $stok->save();
+
+    // Logika untuk file (jika ada)
+    if ($request->hasFile('files')) {
+        foreach ($request->file('files') as $file) {
+            $path = $file->store('uploads', 'public');
+            BarangFile::create([
+                'filename' => $file->getClientOriginalName(),
+                'path' => $path,
+                'barang_id' => $barang->id,
+            ]);
+        }
     }
 
     return redirect()->route('barangs.index')->with('success', 'Barang updated successfully');
